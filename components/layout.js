@@ -24,7 +24,7 @@ export default function({ children }) {
             alignItems: "center"
           }}
         >
-          <img src="https://icon.now.sh/public/50/24FFFF" alt="World icon" />
+          <img src="https://icon.now.sh/public/50/BB99FF" alt="World icon" />
 
           <h1 sx={{ mb: 0 }}>DNS Check</h1>
         </Header>

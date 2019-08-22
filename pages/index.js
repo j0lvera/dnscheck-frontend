@@ -4,9 +4,30 @@ import { useState } from "react";
 import regionArr from "../regions";
 import axios from "axios";
 import qs from "qs";
+import Loading from "react-loading";
+import Fieldset from "../components/fieldset";
+import Input from "../components/input";
+import Button from "../components/button";
+import Table from "../components/table";
+
+const ListItem = ({ children }) => (
+  <li
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center"
+    }}
+  >
+    {children}
+  </li>
+);
 
 const Home = () => {
-  const [domain, setDomain] = useState("");
+  const [domainInfo, setDomainInfo] = useState({
+    domain: "",
+    dnsServer: "8.8.8.8"
+  });
   const [regions, setRegions] = useState(regionArr);
 
   async function handleSubmit(event) {
@@ -17,7 +38,6 @@ const Home = () => {
         currentRegions.map(region => {
           console.log(region.id === id);
           if (region.id === id) {
-            console.log(`setting ${id} loading to true`);
             return {
               ...region,
               loading: true
@@ -33,11 +53,13 @@ const Home = () => {
           url: `https://${id}-dnscheck.now.sh`,
           method: "POST",
           headers: { "content-type": "application/x-www-form-urlencoded" },
-          data: qs.stringify({ domain })
+          data: qs.stringify({
+            domain: domainInfo.domain,
+            dns_server: domainInfo.dnsServer
+          })
         });
 
         if (response.statusText == "OK") {
-          console.log(`${id}:`, response.data.data);
           setRegions(currentRegions =>
             currentRegions.map(region => {
               if (region.id === id) {
@@ -62,52 +84,92 @@ const Home = () => {
     <>
       <Container>
         <form sx={{ mx: "auto", maxWidth: "25em" }} onSubmit={handleSubmit}>
-          <label htmlFor="domain" />
-          <input
-            sx={{
-              backgroundColor: "muted",
-              p: 2,
-              color: "text",
-              border: 0,
-              width: "100%"
-            }}
-            type="text"
-            name="domain"
-            placeholder="jolvera.dev"
-            autoComplete="false"
-            required
-            onKeyDown={e => setDomain(e.target.value)}
-            onChange={e => setDomain(e.target.value)}
-          />
+          <Fieldset>
+            <label htmlFor="dns_server">DNS Server</label>
+            <Input
+              type="text"
+              name="dns_server"
+              value={domainInfo.dnsServer}
+              required
+              onKeyDown={e =>
+                setDomainInfo(
+                  Object.assign({}, domainInfo, { dnsServer: e.target.value })
+                )
+              }
+              onChange={e =>
+                setDomainInfo(
+                  Object.assign({}, domainInfo, { dnsServer: e.target.value })
+                )
+              }
+            />
+          </Fieldset>
 
-          <button type="submit">Submit</button>
+          <Fieldset>
+            <label htmlFor="domain">Domain</label>
+            <Input
+              type="text"
+              name="domain"
+              placeholder="jolvera.dev"
+              autoComplete="false"
+              value={domainInfo.domain}
+              required
+              onKeyDown={e =>
+                setDomainInfo(
+                  Object.assign({}, domainInfo, { domain: e.target.value })
+                )
+              }
+              onChange={e =>
+                setDomainInfo(
+                  Object.assign({}, domainInfo, { domain: e.target.value })
+                )
+              }
+            />
+          </Fieldset>
+
+          <Button
+            type="submit"
+            aria-label={`Check DNS of ${domainInfo.domain}`}
+          >
+            Check DNS
+          </Button>
         </form>
       </Container>
 
-      <Container sx={{ mt: 4, maxWidth: "90%" }}>
+      <Container sx={{ mt: 4, maxWidth: "95%" }}>
         <Box
           sx={{
             display: "grid",
             gridGap: 3,
-            gridTemplateColumns: ["repeat(2, 1fr)", "repeat(4, 1fr)"]
+            gridTemplateColumns: [
+              "repeat(1, 1fr)",
+              "repeat(1, 1fr)",
+              "repeat(1, 1fr)",
+              "repeat(2, 1fr)",
+              "repeat(3, 1fr)"
+            ]
           }}
         >
           {regions.map((region, index) => (
-            <Box key={index}>
+            <Box
+              key={index}
+              sx={{
+                p: 3,
+                bg: "muted"
+              }}
+            >
               <Flex sx={{ alignItems: "center", justifyContent: "center" }}>
                 <span sx={{ fontSize: 4, mr: 2 }}>{region.flag}</span>{" "}
-                {region.location} {region.loading && "(loading...)"}
+                {region.location}
               </Flex>
-              <ul>
-                {region.data &&
-                  region.data.length &&
-                  region.data.map((r, idx) => {
-                    return (
-                      <li key={idx}>
-                        {r.record}: {r.value}
-                      </li>
-                    );
-                  })}
+              <ul sx={{ listStyle: "none", pl: 0, ml: 0 }}>
+                {(region.loading && (
+                  <ListItem>
+                    <Loading type="bubbles" />
+                  </ListItem>
+                )) ||
+                  (!!region.data && (
+                    <Table key={index} records={region.data} />
+                  ))}
               </ul>
             </Box>
           ))}

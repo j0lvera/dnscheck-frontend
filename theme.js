@@ -2,6 +2,7 @@ import { deep } from "@theme-ui/presets";
 
 export default {
   ...deep,
+  breakpoints: ["36em", "48em", "62em", "75em"],
   fonts: {
     body:
       'SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
