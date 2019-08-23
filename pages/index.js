@@ -40,7 +40,8 @@ const Home = () => {
           if (region.id === id) {
             return {
               ...region,
-              loading: true
+              loading: true,
+              error: ""
             };
           }
 
@@ -75,7 +76,20 @@ const Home = () => {
           );
         }
       } catch (err) {
-        console.log("err!", err);
+        console.log("err!", err.response.data.message);
+        setRegions(currentRegions =>
+          currentRegions.map(region => {
+            if (region.id === id) {
+              return {
+                ...region,
+                loading: false,
+                error: err.response.data.message
+              };
+            }
+
+            return region;
+          })
+        );
       }
     });
   }
@@ -144,7 +158,6 @@ const Home = () => {
               "repeat(1, 1fr)",
               "repeat(1, 1fr)",
               "repeat(1, 1fr)",
-              "repeat(2, 1fr)",
               "repeat(3, 1fr)"
             ]
           }}
@@ -161,6 +174,11 @@ const Home = () => {
                 <span sx={{ fontSize: 4, mr: 2 }}>{region.flag}</span>{" "}
                 {region.location}
               </Flex>
+              {region.error && (
+                <Box sx={{ p: 3, my: 3, bg: "brown", textAlign: "center" }}>
+                  {region.error}
+                </Box>
+              )}
               <ul sx={{ listStyle: "none", pl: 0, ml: 0 }}>
                 {(region.loading && (
                   <ListItem>
