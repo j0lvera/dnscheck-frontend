@@ -36,7 +36,6 @@ const Home = () => {
     regions.forEach(async ({ id }) => {
       setRegions(currentRegions =>
         currentRegions.map(region => {
-          console.log(region.id === id);
           if (region.id === id) {
             return {
               ...region,
@@ -60,7 +59,7 @@ const Home = () => {
           })
         });
 
-        if (response.statusText == "OK") {
+        if (response.status === 200) {
           setRegions(currentRegions =>
             currentRegions.map(region => {
               if (region.id === id) {
@@ -180,14 +179,14 @@ const Home = () => {
                 </Box>
               )}
               <ul sx={{ listStyle: "none", pl: 0, ml: 0 }}>
-                {(region.loading && (
+                {region.loading && (
                   <ListItem>
                     <Loading type="bubbles" />
                   </ListItem>
-                )) ||
-                  (!!region.data && (
-                    <Table key={index} records={region.data} />
-                  ))}
+                )}
+                {region.data.length > 0 && (
+                  <Table key={index} records={region.data} />
+                )}
               </ul>
             </Box>
           ))}

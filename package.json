@@ -1,5 +1,5 @@
 {
-  "name": "dns.now.sh",
+  "name": "dnscheck.now.sh",
   "scripts": {
     "dev": "next",
     "build": "next build",
