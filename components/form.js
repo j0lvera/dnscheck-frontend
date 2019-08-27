@@ -1,8 +1,6 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui";
 import React, { useState } from "react";
+import { Input, Label } from "@rebass/forms";
 import Fieldset from "../components/fieldset";
-import Input from "../components/input";
 import Button from "../components/button";
 
 function Form({ handleSubmit, regions }) {
@@ -18,15 +16,14 @@ function Form({ handleSubmit, regions }) {
         handleSubmit(e, regions);
       }}
     >
-      <Fieldset>
-        <label htmlFor="domain">Domain</label>
+      <Fieldset mb={3}>
+        <Label htmlFor="domain">Domain</Label>
         <Input
-          type="text"
+          id="domain"
           name="domain"
           placeholder="jolvera.dev"
           autoComplete="false"
-          value={domainInfo.domain}
-          required
+          defaultValue={domainInfo.domain}
           onKeyDown={e =>
             setDomainInfo(
               Object.assign({}, domainInfo, { domain: e.target.value })
@@ -37,16 +34,16 @@ function Form({ handleSubmit, regions }) {
               Object.assign({}, domainInfo, { domain: e.target.value })
             )
           }
+          required
         />
       </Fieldset>
 
-      <Fieldset>
-        <label htmlFor="dns_server">DNS Server</label>
+      <Fieldset mb={3}>
+        <Label htmlFor="dns_server">DNS Server</Label>
         <Input
           type="text"
           name="dns_server"
-          value={domainInfo.dnsServer}
-          required
+          defaultValue={domainInfo.dnsServer}
           onKeyDown={e =>
             setDomainInfo(
               Object.assign({}, domainInfo, { dnsServer: e.target.value })
@@ -57,6 +54,7 @@ function Form({ handleSubmit, regions }) {
               Object.assign({}, domainInfo, { dnsServer: e.target.value })
             )
           }
+          required
         />
       </Fieldset>
 

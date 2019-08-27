@@ -1,15 +1,12 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui";
-
 function Table({ records }) {
   const Th = ({ children }) => (
     <th
-      sx={{
-        p: 3,
-        "&:first-of-type": {
-          width: ["40%", "40%", "40%", "20%"]
-        }
-      }}
+    // sx={{
+    //   p: 3,
+    //   "&:first-of-type": {
+    //     width: ["40%", "40%", "40%", "20%"]
+    //   }
+    // }}
     >
       {children}
     </th>
@@ -19,21 +16,28 @@ function Table({ records }) {
   return (
     records.length > 0 && (
       <table
-        sx={{
-          mx: "auto",
-          width: "100%",
-          borderCollapse: "collapse",
-          border: "1ps solid #333",
-          wordBreak: "break-word"
-        }}
+      // sx={{
+      //   mx: "auto",
+      //   width: "100%",
+      //   borderCollapse: "collapse",
+      //   border: "1ps solid #333",
+      //   wordBreak: "break-word"
+      // }}
       >
-        <thead sx={{ textAlign: "left" }}>
+        <thead //sx={{ textAlign: "left" }}
+        >
           <tr>
             <Th>
-              <p sx={{ m: 0 }}>Type</p>
+              <p //sx={{ m: 0 }}
+              >
+                Type
+              </p>
             </Th>
             <Th>
-              <p sx={{ m: 0 }}>Value</p>
+              <p //sx={{ m: 0 }}
+              >
+                Value
+              </p>
             </Th>
           </tr>
         </thead>
@@ -42,10 +46,10 @@ function Table({ records }) {
             ({ record, value }, index) =>
               index != 0 && (
                 <tr
-                  sx={{
-                    bg: index % 2 ? "transparent" : "rgba(0,0,0,0.1)",
-                    p: 3
-                  }}
+                // sx={{
+                //   bg: index % 2 ? "transparent" : "rgba(0,0,0,0.1)",
+                //   p: 3
+                // }}
                 >
                   <Td>{record}</Td>
                   <Td>{value}</Td>

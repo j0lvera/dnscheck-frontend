@@ -1,17 +1,18 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui";
+import React from "react";
+import { Box } from "rebass";
 
-function Fieldset({ children }) {
+function Fieldset(props) {
   return (
-    <fieldset
+    <Box
+      {...props}
+      as="fieldset"
       sx={{
         border: 0,
-        p: 0,
-        mb: 3
+        p: 0
       }}
     >
-      {children}
-    </fieldset>
+      {props.children}
+    </Box>
   );
 }
 

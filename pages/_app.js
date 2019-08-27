@@ -1,8 +1,8 @@
 import React from "react";
 import App from "next/app";
-import { ThemeProvider, ColorMode } from "theme-ui";
+import { ThemeProvider } from "emotion-theming";
+import theme from "@rebass/preset";
 import Layout from "../components/layout";
-import theme from "../theme";
 
 class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for
@@ -21,7 +21,6 @@ class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <ThemeProvider theme={theme}>
-        {/* <ColorMode /> */}
         <Layout>
           <Component {...pageProps} />
         </Layout>
