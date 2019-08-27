@@ -5,15 +5,18 @@ function Button({ children }) {
   return (
     <button
       sx={{
-        display: "block",
-        width: "100%",
         border: 0,
         bg: "primary",
         p: 2,
         color: "bg",
         fontWeight: "bold",
         "&:hover": {
-          bg: "secondary"
+          bg: "secondary",
+          cursor: "pointer"
+        },
+        "&:focus,&:active": {
+          bg: "yellow",
+          cursor: "pointer"
         }
       }}
     >

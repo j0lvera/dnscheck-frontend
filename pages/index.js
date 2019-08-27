@@ -1,14 +1,13 @@
 /** @jsx jsx */
 import { jsx, Container, Box, Flex } from "theme-ui";
+import React from "react";
 import { useState } from "react";
 import regionArr from "../regions";
 import axios from "axios";
 import qs from "qs";
 import Loading from "react-loading";
-import Fieldset from "../components/fieldset";
-import Input from "../components/input";
-import Button from "../components/button";
 import Table from "../components/table";
+import Form from "../components/form";
 
 const ListItem = ({ children }) => (
   <li
@@ -23,66 +22,43 @@ const ListItem = ({ children }) => (
   </li>
 );
 
-const Home = () => {
-  const [domainInfo, setDomainInfo] = useState({
-    domain: "",
-    dnsServer: "8.8.8.8"
-  });
-  const [regions, setRegions] = useState(regionArr);
+async function handleSubmit(event, regions) {
+  event.preventDefault();
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-
-    regions.forEach(async ({ id }) => {
-      setRegions(currentRegions =>
-        currentRegions.map(region => {
-          if (region.id === id) {
-            return {
-              ...region,
-              loading: true,
-              error: ""
-            };
-          }
-
-          return region;
-        })
-      );
-
-      try {
-        const response = await axios({
-          url: `https://${id}-dnscheck.now.sh`,
-          method: "POST",
-          headers: { "content-type": "application/x-www-form-urlencoded" },
-          data: qs.stringify({
-            domain: domainInfo.domain,
-            dns_server: domainInfo.dnsServer
-          })
-        });
-
-        if (response.status === 200) {
-          setRegions(currentRegions =>
-            currentRegions.map(region => {
-              if (region.id === id) {
-                return {
-                  ...region,
-                  loading: false,
-                  data: response.data.data
-                };
-              }
-
-              return region;
-            })
-          );
+  regions.forEach(async ({ id }) => {
+    props.setRegions(currentRegions =>
+      currentRegions.map(region => {
+        if (region.id === id) {
+          return {
+            ...region,
+            loading: true,
+            error: ""
+          };
         }
-      } catch (err) {
-        console.log("err!", err.response.data.message);
-        setRegions(currentRegions =>
+
+        return region;
+      })
+    );
+
+    try {
+      const response = await axios({
+        url: `https://${id}-dnscheck.now.sh`,
+        method: "POST",
+        headers: { "content-type": "application/x-www-form-urlencoded" },
+        data: qs.stringify({
+          domain: domainInfo.domain,
+          dns_server: domainInfo.dnsServer
+        })
+      });
+
+      if (response.status === 200) {
+        props.setRegions(currentRegions =>
           currentRegions.map(region => {
             if (region.id === id) {
               return {
                 ...region,
                 loading: false,
-                error: err.response.data.message
+                data: response.data.data
               };
             }
 
@@ -90,62 +66,36 @@ const Home = () => {
           })
         );
       }
-    });
-  }
+    } catch (err) {
+      console.log("err!", err.response.data.message);
+      props.setRegions(currentRegions =>
+        currentRegions.map(region => {
+          if (region.id === id) {
+            return {
+              ...region,
+              loading: false,
+              error: err.response.data.message
+            };
+          }
+
+          return region;
+        })
+      );
+    }
+  });
+}
+
+const Home = () => {
+  const [regions, setRegions] = useState(regionArr);
 
   return (
     <>
       <Container>
-        <form sx={{ mx: "auto", maxWidth: "25em" }} onSubmit={handleSubmit}>
-          <Fieldset>
-            <label htmlFor="dns_server">DNS Server</label>
-            <Input
-              type="text"
-              name="dns_server"
-              value={domainInfo.dnsServer}
-              required
-              onKeyDown={e =>
-                setDomainInfo(
-                  Object.assign({}, domainInfo, { dnsServer: e.target.value })
-                )
-              }
-              onChange={e =>
-                setDomainInfo(
-                  Object.assign({}, domainInfo, { dnsServer: e.target.value })
-                )
-              }
-            />
-          </Fieldset>
-
-          <Fieldset>
-            <label htmlFor="domain">Domain</label>
-            <Input
-              type="text"
-              name="domain"
-              placeholder="jolvera.dev"
-              autoComplete="false"
-              value={domainInfo.domain}
-              required
-              onKeyDown={e =>
-                setDomainInfo(
-                  Object.assign({}, domainInfo, { domain: e.target.value })
-                )
-              }
-              onChange={e =>
-                setDomainInfo(
-                  Object.assign({}, domainInfo, { domain: e.target.value })
-                )
-              }
-            />
-          </Fieldset>
-
-          <Button
-            type="submit"
-            aria-label={`Check DNS of ${domainInfo.domain}`}
-          >
-            Check DNS
-          </Button>
-        </form>
+        <Form
+          setRegions={setRegions}
+          regions={regions}
+          handleSubmit={handleSubmit}
+        />
       </Container>
 
       <Container sx={{ mt: 4, maxWidth: "95%" }}>
