@@ -1,6 +1,5 @@
 import axios from "axios";
 import qs from "qs";
-import { isAbsolute } from "path";
 
 async function handleSubmit(
   event,
@@ -13,10 +12,9 @@ async function handleSubmit(
 
   let authNameservers = [];
 
-  // First request to get the authoritative nameserver
+  // First request to get the Authoritative Nameserver
 
   try {
-    console.log("Making request");
     const authResponse = await axios({
       url: "https://arn1-dnscheck.now.sh/authoritative_nameserver",
       method: "POST",
@@ -28,11 +26,28 @@ async function handleSubmit(
 
     if (authResponse.status === 200) {
       authNameservers = authResponse.data.message;
-      console.log("auth nameservers", authNameservers);
     }
   } catch (err) {
-    console.error("Error while trying to get the Auth NS", err);
+    if (err.response) {
+      setRegions(currentRegions =>
+        currentRegions.map(region => {
+          if (region.id === id) {
+            return {
+              ...region,
+              loading: false,
+              error: err.response.data.message
+            };
+          }
+
+          return region;
+        })
+      );
+    }
+
+    return;
   }
+
+  // Second set of requests to get Recursive Resolvers responses
 
   regions.forEach(async ({ id }, index) => {
     const isAuthoritative = index === 0;
@@ -85,9 +100,6 @@ async function handleSubmit(
 
       setDisabled(false);
     } catch (err) {
-      setDisabled(false);
-      console.log("err!", err);
-
       if (err.response) {
         setRegions(currentRegions =>
           currentRegions.map(region => {
@@ -105,6 +117,8 @@ async function handleSubmit(
       } else {
         console.error(err);
       }
+
+      setDisabled(false);
     }
   });
 }
