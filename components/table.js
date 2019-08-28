@@ -48,6 +48,7 @@ function Table({ records }) {
             ({ record, value }, index) =>
               index != 0 && (
                 <Box
+                  key={index}
                   as="tr"
                   sx={{
                     bg: index % 2 ? "transparent" : "rgba(0,0,0,0.1)",

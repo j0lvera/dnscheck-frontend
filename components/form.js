@@ -39,6 +39,7 @@ function Form({ setRegions, regions }) {
               Object.assign({}, domainInfo, { domain: e.target.value })
             )
           }
+          sx={{ "&:focus": { bg: "muted" } }}
           required
         />
       </Fieldset>
@@ -59,6 +60,7 @@ function Form({ setRegions, regions }) {
               Object.assign({}, domainInfo, { dnsServer: e.target.value })
             )
           }
+          sx={{ "&:focus": { bg: "muted" } }}
           required
         />
       </Fieldset>

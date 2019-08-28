@@ -1,6 +1,8 @@
 import { Box } from "rebass";
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
+import qs from "qs";
 import regionArr from "../regions";
 import Form from "../components/form";
 import ResultsGrid from "../components/results-grid";

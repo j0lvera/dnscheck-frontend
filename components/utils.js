@@ -1,5 +1,6 @@
 import axios from "axios";
 import qs from "qs";
+import { isAbsolute } from "path";
 
 async function handleSubmit(
   event,
@@ -10,7 +11,32 @@ async function handleSubmit(
 ) {
   event.preventDefault();
 
-  regions.forEach(async ({ id }) => {
+  let authNameservers = [];
+
+  // First request to get the authoritative nameserver
+
+  try {
+    console.log("Making request");
+    const authResponse = await axios({
+      url: "https://arn1-dnscheck.now.sh/authoritative_nameserver",
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      data: qs.stringify({
+        domain: domainInfo.domain
+      })
+    });
+
+    if (authResponse.status === 200) {
+      authNameservers = authResponse.data.message;
+      console.log("auth nameservers", authNameservers);
+    }
+  } catch (err) {
+    console.error("Error while trying to get the Auth NS", err);
+  }
+
+  regions.forEach(async ({ id }, index) => {
+    const isAuthoritative = index === 0;
+
     setRegions(currentRegions =>
       currentRegions.map(region => {
         if (region.id === id) {
@@ -27,13 +53,17 @@ async function handleSubmit(
     );
 
     try {
+      const url = `https://${id}-dnscheck.now.sh`;
+
       const response = await axios({
-        url: `https://${id}-dnscheck.now.sh`,
+        url: isAuthoritative ? "https://arn1-dnscheck.now.sh" : url,
         method: "POST",
         headers: { "content-type": "application/x-www-form-urlencoded" },
         data: qs.stringify({
           domain: domainInfo.domain,
-          dns_server: domainInfo.dnsServer
+          dns_server: isAuthoritative
+            ? authNameservers[0]
+            : domainInfo.dnsServer
         })
       });
 

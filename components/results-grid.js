@@ -18,8 +18,6 @@ const ListItem = ({ children }) => (
 );
 
 function ResultsGrid({ regions }) {
-  console.log("regions", regions);
-
   return (
     <Box
       sx={{
@@ -39,7 +37,7 @@ function ResultsGrid({ regions }) {
           key={index}
           sx={{
             p: 3,
-            bg: "muted"
+            bg: index === 0 ? "highlight" : "muted"
           }}
         >
           <Flex sx={{ alignItems: "center", justifyContent: "center" }}>
