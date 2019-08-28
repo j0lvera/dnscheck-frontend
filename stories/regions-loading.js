@@ -1,25 +1,14 @@
-// console.log(❌);
-// console.log(✅)
+import payload from "./payload";
 
 export default [
-  {
-    id: "authNS",
-    error: "",
-    location: "Authoritative Response",
-    type: "Origin",
-    flag: "👑",
-    loading: false,
-    data: []
-  },
-
   {
     id: "arn1",
     error: "",
     location: "Stockholm, Sweden",
     type: "Origin",
     flag: "🇸🇪",
-    loading: false,
-    data: []
+    loading: true,
+    data: payload
   },
   {
     id: "bom1",
@@ -27,8 +16,8 @@ export default [
     location: "Mumbai, India",
     type: "Origin",
     flag: "🇮🇳",
-    loading: false,
-    data: []
+    loading: true,
+    data: payload
   },
   {
     id: "bru1",
@@ -36,8 +25,8 @@ export default [
     location: "Brussels, Belgium, Europe",
     type: "Origin",
     flag: "🇪🇺",
-    loading: false,
-    data: []
+    loading: true,
+    data: payload
   },
   {
     id: "cdg1",
@@ -45,8 +34,8 @@ export default [
     location: "Paris, France, Europe",
     type: "Origin",
     flag: "🇪🇺",
-    loading: false,
-    data: []
+    loading: true,
+    data: payload
   },
   {
     id: "dub1",
@@ -54,8 +43,8 @@ export default [
     location: "Dublin, Ireland",
     type: "Origin",
     flag: "🇮🇪",
-    loading: false,
-    data: []
+    loading: true,
+    data: payload
   },
 
   {
@@ -64,8 +53,8 @@ export default [
     location: "São Paulo, Brazil",
     type: "Origin",
     flag: "🇧🇷",
-    loading: false,
-    data: []
+    loading: true,
+    data: payload
   },
 
   {
@@ -74,8 +63,8 @@ export default [
     location: "Tokyo, Japan",
     type: "Origin",
     flag: "🇯🇵",
-    loading: false,
-    data: []
+    loading: true,
+    data: payload
   },
 
   {
@@ -84,8 +73,8 @@ export default [
     location: "Washington DC, USA",
     type: "Origin",
     flag: "🇺🇸",
-    loading: false,
-    data: []
+    loading: true,
+    data: payload
   },
 
   {
@@ -94,8 +83,8 @@ export default [
     location: "Seoul, South Korea",
     type: "Origin",
     flag: "🇰🇷",
-    loading: false,
-    data: []
+    loading: true,
+    data: payload
   },
 
   {
@@ -104,8 +93,8 @@ export default [
     location: "London, UK",
     type: "Origin",
     flag: "🇬🇧",
-    loading: false,
-    data: []
+    loading: true,
+    data: payload
   },
 
   {
@@ -114,8 +103,8 @@ export default [
     location: "Portland, West US",
     type: "Origin",
     flag: "🇺🇸",
-    loading: false,
-    data: []
+    loading: true,
+    data: payload
   },
 
   {
@@ -124,8 +113,8 @@ export default [
     location: "San Francisco, CA, USA",
     type: "Origin",
     flag: "🇺🇸",
-    loading: false,
-    data: []
+    loading: true,
+    data: payload
   },
 
   {
@@ -134,8 +123,8 @@ export default [
     location: "Singapore",
     type: "Origin",
     flag: "🇸🇬",
-    loading: false,
-    data: []
+    loading: true,
+    data: payload
   },
 
   {
@@ -144,7 +133,7 @@ export default [
     location: "Sydney, Australia",
     type: "Origin",
     flag: "🇦🇺",
-    loading: false,
-    data: []
+    loading: true,
+    data: payload
   }
 ];

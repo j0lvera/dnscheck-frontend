@@ -1,17 +1,6 @@
-// console.log(❌);
-// console.log(✅)
+import payload from "./payload";
 
 export default [
-  {
-    id: "authNS",
-    error: "",
-    location: "Authoritative Response",
-    type: "Origin",
-    flag: "👑",
-    loading: false,
-    data: []
-  },
-
   {
     id: "arn1",
     error: "",
@@ -19,7 +8,7 @@ export default [
     type: "Origin",
     flag: "🇸🇪",
     loading: false,
-    data: []
+    data: payload.data
   },
   {
     id: "bom1",
@@ -28,7 +17,7 @@ export default [
     type: "Origin",
     flag: "🇮🇳",
     loading: false,
-    data: []
+    data: payload.data
   },
   {
     id: "bru1",
@@ -37,7 +26,7 @@ export default [
     type: "Origin",
     flag: "🇪🇺",
     loading: false,
-    data: []
+    data: payload.data
   },
   {
     id: "cdg1",
@@ -46,7 +35,7 @@ export default [
     type: "Origin",
     flag: "🇪🇺",
     loading: false,
-    data: []
+    data: payload.data
   },
   {
     id: "dub1",
@@ -55,7 +44,7 @@ export default [
     type: "Origin",
     flag: "🇮🇪",
     loading: false,
-    data: []
+    data: payload.data
   },
 
   {
@@ -65,7 +54,7 @@ export default [
     type: "Origin",
     flag: "🇧🇷",
     loading: false,
-    data: []
+    data: payload.data
   },
 
   {
@@ -75,7 +64,7 @@ export default [
     type: "Origin",
     flag: "🇯🇵",
     loading: false,
-    data: []
+    data: payload.data
   },
 
   {
@@ -85,7 +74,7 @@ export default [
     type: "Origin",
     flag: "🇺🇸",
     loading: false,
-    data: []
+    data: payload.data
   },
 
   {
@@ -95,7 +84,7 @@ export default [
     type: "Origin",
     flag: "🇰🇷",
     loading: false,
-    data: []
+    data: payload.data
   },
 
   {
@@ -105,7 +94,7 @@ export default [
     type: "Origin",
     flag: "🇬🇧",
     loading: false,
-    data: []
+    data: payload.data
   },
 
   {
@@ -115,7 +104,7 @@ export default [
     type: "Origin",
     flag: "🇺🇸",
     loading: false,
-    data: []
+    data: payload.data
   },
 
   {
@@ -125,7 +114,7 @@ export default [
     type: "Origin",
     flag: "🇺🇸",
     loading: false,
-    data: []
+    data: payload.data
   },
 
   {
@@ -135,7 +124,7 @@ export default [
     type: "Origin",
     flag: "🇸🇬",
     loading: false,
-    data: []
+    data: payload.data
   },
 
   {
@@ -145,6 +134,6 @@ export default [
     type: "Origin",
     flag: "🇦🇺",
     loading: false,
-    data: []
+    data: payload.data
   }
 ];

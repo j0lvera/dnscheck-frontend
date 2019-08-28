@@ -1,25 +1,6 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui";
+import React from "react";
+import { Button } from "rebass";
 
-function Button({ children }) {
-  return (
-    <button
-      sx={{
-        display: "block",
-        width: "100%",
-        border: 0,
-        bg: "primary",
-        p: 2,
-        color: "bg",
-        fontWeight: "bold",
-        "&:hover": {
-          bg: "secondary"
-        }
-      }}
-    >
-      {children}
-    </button>
-  );
+export default function(props) {
+  return <Button {...props}>{props.children}</Button>;
 }
-
-export default Button;

@@ -1,17 +1,4 @@
-// console.log(❌);
-// console.log(✅)
-
 export default [
-  {
-    id: "authNS",
-    error: "",
-    location: "Authoritative Response",
-    type: "Origin",
-    flag: "👑",
-    loading: false,
-    data: []
-  },
-
   {
     id: "arn1",
     error: "",

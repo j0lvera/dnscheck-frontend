@@ -1,47 +1,55 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui";
+import React from "react";
+import { Box, Text } from "rebass";
 
 function Table({ records }) {
   const Th = ({ children }) => (
-    <th
+    <Box
+      as="th"
       sx={{
-        p: 3,
+        p: 2,
         "&:first-of-type": {
-          width: ["40%", "40%", "40%", "20%"]
+          width: ["4em", "4em", "5em", "5em"]
         }
       }}
     >
       {children}
-    </th>
+    </Box>
   );
-  const Td = ({ children }) => <td sx={{ p: 3 }}>{children}</td>;
+  const Td = ({ children }) => (
+    <Box as="td" sx={{ p: 2 }}>
+      {children}
+    </Box>
+  );
 
   return (
     records.length > 0 && (
-      <table
+      <Box
+        as="table"
         sx={{
           mx: "auto",
           width: "100%",
           borderCollapse: "collapse",
-          border: "1ps solid #333",
+          border: "1ps solid #fff",
           wordBreak: "break-word"
         }}
       >
-        <thead sx={{ textAlign: "left" }}>
+        <Box as="thead" sx={{ textAlign: "left" }}>
           <tr>
             <Th>
-              <p sx={{ m: 0 }}>Type</p>
+              <Text sx={{ m: 0 }}>Type</Text>
             </Th>
             <Th>
-              <p sx={{ m: 0 }}>Value</p>
+              <Text sx={{ m: 0 }}>Value</Text>
             </Th>
           </tr>
-        </thead>
+        </Box>
         <tbody>
           {records.map(
             ({ record, value }, index) =>
               index != 0 && (
-                <tr
+                <Box
+                  key={index}
+                  as="tr"
                   sx={{
                     bg: index % 2 ? "transparent" : "rgba(0,0,0,0.1)",
                     p: 3
@@ -49,11 +57,11 @@ function Table({ records }) {
                 >
                   <Td>{record}</Td>
                   <Td>{value}</Td>
-                </tr>
+                </Box>
               )
           )}
         </tbody>
-      </table>
+      </Box>
     )
   );
 }

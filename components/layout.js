@@ -1,48 +1,68 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui";
-import { Styled, Layout, Header, Main, Footer } from "theme-ui";
+import React from "react";
+import { Box, Flex, Link, Text } from "rebass";
 import { Global } from "@emotion/core";
 
-export default function({ children }) {
+export const Container = props => (
+  <Box {...props} mx="auto">
+    {props.children}
+  </Box>
+);
+
+function Layout({ children }) {
   return (
-    <Styled.root>
-      <Layout>
-        <Global
-          styles={{
-            "*": {
-              boxSizing: "border-box"
-            },
-            body: {
-              margin: 0
-            }
-          }}
-        />
-        <Header
+    <Box bg="background" color="text" fontFamily="body">
+      <Global
+        styles={{
+          "*": {
+            boxSizing: "border-box"
+          },
+          body: {
+            margin: 0,
+            background: "hsl(230, 25%, 18%)"
+          }
+        }}
+      />
+      <Flex
+        as="header"
+        p={4}
+        alignItems="center"
+        flexDirection="column"
+        maxWidth="1"
+        mx="auto"
+      >
+        <img src="https://icon.now.sh/public/50/BB99FF" alt="World icon" />
+
+        <Text as="h1" mt={3} mb={0}>
+          DNS Check
+        </Text>
+      </Flex>
+
+      <Box mx="auto" as="main">
+        {children}
+      </Box>
+
+      <Box as="footer" p={5}>
+        <Container
           sx={{
-            py: 4,
-            flexDirection: "column",
-            alignItems: "center"
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: ["column", "row"],
+            textAlign: ["center", "left"]
           }}
         >
-          <img src="https://icon.now.sh/public/50/BB99FF" alt="World icon" />
-
-          <h1 sx={{ mb: 0 }}>DNS Check</h1>
-        </Header>
-
-        <Main>{children}</Main>
-
-        <Footer sx={{ justifyContent: "center", py: 4 }}>
-          <a href="https://jolvera.dev" sx={{ p: 2 }}>
+          <Link mr={[0, 3]} href="https://jolvera.dev">
             Juan Olvera
-          </a>
-          <a sx={{ p: 2 }} href="https://zeit.co">
+          </Link>
+          <Link mt={[3, 0]} mr={[0, 3]} href="https://zeit.co">
             Hosted on Now
-          </a>
-          <a sx={{ p: 2 }} href="https://github.com/j0lv3r4/dnscheck">
+          </Link>
+          <Link mt={[3, 0]} href="https://github.com/j0lv3r4/dnscheck">
             Source Code
-          </a>
-        </Footer>
-      </Layout>
-    </Styled.root>
+          </Link>
+        </Container>
+      </Box>
+    </Box>
   );
 }
+
+export default Layout;
