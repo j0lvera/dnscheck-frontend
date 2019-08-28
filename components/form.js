@@ -22,7 +22,6 @@ function Form({ handleSubmit, regions }) {
           id="domain"
           name="domain"
           placeholder="jolvera.dev"
-          autoComplete="false"
           defaultValue={domainInfo.domain}
           onKeyDown={e =>
             setDomainInfo(
@@ -41,7 +40,7 @@ function Form({ handleSubmit, regions }) {
       <Fieldset mb={3}>
         <Label htmlFor="dns_server">DNS Server</Label>
         <Input
-          type="text"
+          id="dns_server"
           name="dns_server"
           defaultValue={domainInfo.dnsServer}
           onKeyDown={e =>

@@ -22,6 +22,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
+    "@storybook/addon-a11y": "^5.1.11",
+    "@storybook/addon-actions": "^5.1.11",
+    "@storybook/addon-viewport": "^5.1.11",
     "@storybook/react": "^5.1.11",
     "babel-loader": "^8.0.6",
     "prettier": "^1.18.2"

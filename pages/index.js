@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { jsx, Container, Box, Flex } from "theme-ui";
+import { Box, Flex } from "rebass";
 import React from "react";
 import { useState } from "react";
 import regionArr from "../regions";
@@ -90,15 +89,15 @@ const Home = () => {
 
   return (
     <>
-      <Container>
+      <Box>
         <Form
           setRegions={setRegions}
           regions={regions}
           handleSubmit={handleSubmit}
         />
-      </Container>
+      </Box>
 
-      <Container sx={{ mt: 4, maxWidth: "95%" }}>
+      <Box sx={{ mt: 4, maxWidth: "95%" }}>
         <Box
           sx={{
             display: "grid",
@@ -141,7 +140,7 @@ const Home = () => {
             </Box>
           ))}
         </Box>
-      </Container>
+      </Box>
     </>
   );
 };

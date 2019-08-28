@@ -1,8 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import { ThemeProvider } from "emotion-theming";
-import { Flex, Box } from "rebass";
-// import theme from "@rebass/preset";
+import { Box } from "rebass";
 import Form from "../components/form";
 import Button from "../components/button";
 import theme from "../theme";
@@ -17,7 +17,7 @@ const withProvider = story => (
 
 storiesOf("Form", module)
   .addDecorator(withProvider)
-  .add("default", () => <Form handleSubmit={e => console.log(e)} />);
+  .add("default", () => <Form handleSubmit={action("form submitted!")} />);
 
 storiesOf("Button", module)
   .addDecorator(withProvider)
