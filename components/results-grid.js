@@ -37,14 +37,17 @@ function ResultsGrid({ regions }) {
           key={index}
           sx={{
             p: 3,
-            bg: index === 0 ? "highlight" : "muted"
+            bg: index === 0 ? "primary" : "muted",
+            color: index === 0 ? "background" : "text"
           }}
         >
           <Flex sx={{ alignItems: "center", justifyContent: "center" }}>
             <Text fontSize={4} mr={2} textAlign="center">
               {region.flag}
             </Text>{" "}
-            {region.location}
+            <Text fontWeight={index === 0 ? "heading" : "body"}>
+              {region.location}
+            </Text>
           </Flex>
           {region.error && (
             <Box sx={{ p: 3, my: 3, bg: "brown", textAlign: "center" }}>
