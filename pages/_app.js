@@ -1,7 +1,8 @@
 import React from "react";
 import App from "next/app";
 import { ThemeProvider } from "emotion-theming";
-import theme from "@rebass/preset";
+// import theme from "@rebass/preset";
+import theme from "../theme";
 import Layout from "../components/layout";
 
 class MyApp extends App {

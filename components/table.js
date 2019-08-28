@@ -1,63 +1,66 @@
+import React from "react";
+import { Box, Text } from "rebass";
+
 function Table({ records }) {
   const Th = ({ children }) => (
-    <th
-    // sx={{
-    //   p: 3,
-    //   "&:first-of-type": {
-    //     width: ["40%", "40%", "40%", "20%"]
-    //   }
-    // }}
+    <Box
+      as="th"
+      sx={{
+        p: 2,
+        "&:first-of-type": {
+          width: ["4em", "4em", "5em", "5em"]
+        }
+      }}
     >
       {children}
-    </th>
+    </Box>
   );
-  const Td = ({ children }) => <td sx={{ p: 3 }}>{children}</td>;
+  const Td = ({ children }) => (
+    <Box as="td" sx={{ p: 2 }}>
+      {children}
+    </Box>
+  );
 
   return (
     records.length > 0 && (
-      <table
-      // sx={{
-      //   mx: "auto",
-      //   width: "100%",
-      //   borderCollapse: "collapse",
-      //   border: "1ps solid #333",
-      //   wordBreak: "break-word"
-      // }}
+      <Box
+        as="table"
+        sx={{
+          mx: "auto",
+          width: "100%",
+          borderCollapse: "collapse",
+          border: "1ps solid #fff",
+          wordBreak: "break-word"
+        }}
       >
-        <thead //sx={{ textAlign: "left" }}
-        >
+        <Box as="thead" sx={{ textAlign: "left" }}>
           <tr>
             <Th>
-              <p //sx={{ m: 0 }}
-              >
-                Type
-              </p>
+              <Text sx={{ m: 0 }}>Type</Text>
             </Th>
             <Th>
-              <p //sx={{ m: 0 }}
-              >
-                Value
-              </p>
+              <Text sx={{ m: 0 }}>Value</Text>
             </Th>
           </tr>
-        </thead>
+        </Box>
         <tbody>
           {records.map(
             ({ record, value }, index) =>
               index != 0 && (
-                <tr
-                // sx={{
-                //   bg: index % 2 ? "transparent" : "rgba(0,0,0,0.1)",
-                //   p: 3
-                // }}
+                <Box
+                  as="tr"
+                  sx={{
+                    bg: index % 2 ? "transparent" : "rgba(0,0,0,0.1)",
+                    p: 3
+                  }}
                 >
                   <Td>{record}</Td>
                   <Td>{value}</Td>
-                </tr>
+                </Box>
               )
           )}
         </tbody>
-      </table>
+      </Box>
     )
   );
 }

@@ -1,6 +1,7 @@
 export default {
   breakpoints: ["40em", "52em", "64em"],
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 72],
+  sizes: ["30em", "45em", "65em", "90%", "100%"],
   colors: {
     text: "hsl(210, 50%, 96%)",
     background: "hsl(230, 25%, 18%)",

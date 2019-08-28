@@ -2,18 +2,22 @@ import React, { useState } from "react";
 import { Input, Label } from "@rebass/forms";
 import Fieldset from "../components/fieldset";
 import Button from "../components/button";
+import { handleSubmit } from "../components/utils";
 
-function Form({ handleSubmit, regions }) {
+function Form({ setRegions, regions }) {
   const [domainInfo, setDomainInfo] = useState({
     domain: "",
     dnsServer: "8.8.8.8"
   });
 
+  const [isDisabled, setDisabled] = useState(false);
+
   return (
     <form
       onSubmit={e => {
         e.preventDefault();
-        handleSubmit(e, regions);
+        setDisabled(true);
+        handleSubmit(e, regions, setRegions, domainInfo, setDisabled);
       }}
     >
       <Fieldset mb={3}>
@@ -57,7 +61,11 @@ function Form({ handleSubmit, regions }) {
         />
       </Fieldset>
 
-      <Button type="submit" aria-label={`Check DNS of ${domainInfo.domain}`}>
+      <Button
+        type="submit"
+        aria-label={`Check DNS of ${domainInfo.domain}`}
+        disabled={isDisabled}
+      >
         Check DNS
       </Button>
     </form>
