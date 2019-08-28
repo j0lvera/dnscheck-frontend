@@ -37,8 +37,6 @@ async function handleSubmit(
         })
       });
 
-      setDisabled(false);
-
       if (response.status === 200) {
         setRegions(currentRegions =>
           currentRegions.map(region => {
@@ -54,6 +52,8 @@ async function handleSubmit(
           })
         );
       }
+
+      setDisabled(false);
     } catch (err) {
       setDisabled(false);
       console.log("err!", err);

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Link } from "rebass";
+import { Box, Flex, Link, Text } from "rebass";
 import { Global } from "@emotion/core";
 
 export const Container = props => (
@@ -32,7 +32,9 @@ function Layout({ children }) {
       >
         <img src="https://icon.now.sh/public/50/BB99FF" alt="World icon" />
 
-        <h1>DNS Check</h1>
+        <Text as="h1" mt={3} mb={0}>
+          DNS Check
+        </Text>
       </Flex>
 
       <Box mx="auto" as="main">
@@ -40,14 +42,23 @@ function Layout({ children }) {
       </Box>
 
       <Box as="footer" p={5}>
-        <Container sx={{ display: "flex", justifyContent: "center" }}>
-          <Link mr={3} href="https://jolvera.dev">
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: ["column", "row"],
+            textAlign: ["center", "left"]
+          }}
+        >
+          <Link mr={[0, 3]} href="https://jolvera.dev">
             Juan Olvera
           </Link>
-          <Link mr={3} href="https://zeit.co">
+          <Link mt={[3, 0]} mr={[0, 3]} href="https://zeit.co">
             Hosted on Now
           </Link>
-          <Link href="https://github.com/j0lv3r4/dnscheck">Source Code</Link>
+          <Link mt={[3, 0]} href="https://github.com/j0lv3r4/dnscheck">
+            Source Code
+          </Link>
         </Container>
       </Box>
     </Box>

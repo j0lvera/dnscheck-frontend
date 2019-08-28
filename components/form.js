@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import Loading from "react-loading";
 import { Input, Label } from "@rebass/forms";
 import Fieldset from "../components/fieldset";
 import Button from "../components/button";
 import { handleSubmit } from "../components/utils";
+import theme from "../theme";
 
 function Form({ setRegions, regions }) {
   const [domainInfo, setDomainInfo] = useState({
