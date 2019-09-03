@@ -8,7 +8,7 @@ async function handleSubmit(
   domainInfo,
   setDisabled
 ) {
-  event.preventDefault();
+  event != null && event.preventDefault();
 
   let authNameservers = [];
 
@@ -31,7 +31,8 @@ async function handleSubmit(
     if (err.response) {
       setRegions(currentRegions =>
         currentRegions.map(region => {
-          if (region.id === id) {
+          console.log("region", region);
+          if (region.id === "authNS") {
             return {
               ...region,
               loading: false,
@@ -118,7 +119,8 @@ async function handleSubmit(
         console.error(err);
       }
 
-      setDisabled(false);
+      // Stop before trying the other regions.
+      return setDisabled(false);
     }
   });
 }

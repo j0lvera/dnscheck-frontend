@@ -50,7 +50,15 @@ function ResultsGrid({ regions }) {
             </Text>
           </Flex>
           {region.error && (
-            <Box sx={{ p: 3, my: 3, bg: "brown", textAlign: "center" }}>
+            <Box
+              sx={{
+                p: 3,
+                my: 3,
+                color: "text",
+                bg: "brown",
+                textAlign: "center"
+              }}
+            >
               {region.error}
             </Box>
           )}

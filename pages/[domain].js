@@ -1,19 +1,20 @@
 import { Box } from "rebass";
 import React from "react";
 import { useState } from "react";
+// import { useRouter } from "next/router";
 import regionArr from "../regions";
 import Form from "../components/form";
 import ResultsGrid from "../components/results-grid";
 import { Container } from "../components/layout";
 
-const Home = () => {
+const DomainRoute = ({ domain }) => {
   const [regions, setRegions] = useState(regionArr);
 
   return (
     <>
       <Box maxWidth={0} mx="auto" px={[3, 0]}>
         <Container>
-          <Form setRegions={setRegions} regions={regions} />
+          <Form setRegions={setRegions} regions={regions} domain={domain} />
         </Container>
       </Box>
 
@@ -24,4 +25,10 @@ const Home = () => {
   );
 };
 
-export default Home;
+DomainRoute.getInitialProps = async ctx => {
+  const { domain } = ctx.query;
+
+  return { domain };
+};
+
+export default DomainRoute;
