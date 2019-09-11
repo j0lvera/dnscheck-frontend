@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Flex, Link, Text } from "rebass";
 import { Global } from "@emotion/core";
 import Head from "./head";
+import theme from "../theme";
 
 export const Container = props => (
   <Box {...props} mx="auto">
@@ -24,6 +25,9 @@ function Layout({ children }) {
           body: {
             margin: 0,
             background: "hsl(230, 25%, 18%)"
+          },
+          "*:focus": {
+            outline: `${theme.colors.primary} solid 3px`
           }
         }}
       />

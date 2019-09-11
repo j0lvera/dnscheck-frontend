@@ -7,6 +7,8 @@ import ResultsGrid from "../components/results-grid";
 import Table from "../components/table";
 import Form from "../components/form";
 import Button from "../components/button";
+import Header from "../components/header";
+import Logo from "../components/logo";
 import theme from "../theme";
 import payload from "./payload";
 import regions from "./regions";
@@ -15,11 +17,29 @@ import regionsWithoutData from "./regions-without-data";
 
 const withProvider = story => (
   <ThemeProvider theme={theme}>
-    <Box bg="background" color="text" fontFamily="body" p={4}>
+    <Box
+      bg="background"
+      color="text"
+      fontFamily="body"
+      p={4}
+      sx={{
+        "*:focus": {
+          outline: `${theme.colors.primary} solid 3px`
+        }
+      }}
+    >
       {story()}
     </Box>
   </ThemeProvider>
 );
+
+storiesOf("Logo", module)
+  .addDecorator(withProvider)
+  .add("default", () => <Logo />);
+
+storiesOf("Header", module)
+  .addDecorator(withProvider)
+  .add("default", () => <Header />);
 
 storiesOf("Form", module)
   .addDecorator(withProvider)
