@@ -11,13 +11,13 @@ const Home = () => {
 
   return (
     <>
-      <Box maxWidth={0} mx="auto" px={[3, 0]}>
+      <Box maxWidth={0} mx="auto" py={4} px={[3, 0]}>
         <Container>
           <Form setRegions={setRegions} regions={regions} />
         </Container>
       </Box>
 
-      <Box width={3} mx="auto" mt={3} py={4}>
+      <Box width={3} mx="auto" py={4}>
         <ResultsGrid regions={regions} />
       </Box>
     </>

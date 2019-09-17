@@ -47,8 +47,14 @@ storiesOf("Form", module)
 
 storiesOf("Button", module)
   .addDecorator(withProvider)
-  .add("Primary", () => <Button>Button Primary</Button>)
-  .add("Disabled", () => <Button disabled>Button Primary</Button>);
+  .add("Primary", () => <Button>Button primary</Button>)
+  .add("Loading", () => <Button loading>Button loading</Button>)
+  .add("Disabled", () => <Button disabled>Button disabled</Button>)
+  .add("Disabled loading", () => (
+    <Button disabled loading>
+      Button disabled loading
+    </Button>
+  ));
 
 storiesOf("Table", module)
   .addDecorator(withProvider)

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Router from "next/router";
-import { Box, Flex } from "rebass";
+import { Box } from "rebass";
 import { Input, Label } from "@rebass/forms";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Fieldset from "../components/fieldset";
@@ -69,7 +69,7 @@ function Form({ setRegions, regions, domain }) {
           />
         </Fieldset>
 
-        <Fieldset mb={3}>
+        <Box mb={3}>
           <Label htmlFor="dns_server">DNS Server</Label>
           <Input
             id="dns_server"
@@ -84,12 +84,13 @@ function Form({ setRegions, regions, domain }) {
             sx={{ "&:focus": { bg: "muted" } }}
             required
           />
-        </Fieldset>
+        </Box>
 
         <Button
           type="submit"
           aria-label={`Check DNS of ${domainInfo.domain}`}
           disabled={isDisabled}
+          loading={isDisabled}
         >
           Check DNS
         </Button>

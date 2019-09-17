@@ -56,5 +56,12 @@ export default {
         textDecoration: "line-through"
       }
     }
+  },
+  styles: {
+    root: {
+      fontFamily: "body",
+      fontWeight: "body",
+      lineHeight: "body"
+    }
   }
 };

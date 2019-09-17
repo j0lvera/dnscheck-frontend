@@ -1,7 +1,6 @@
 import { Box } from "rebass";
 import React from "react";
 import { useState } from "react";
-// import { useRouter } from "next/router";
 import regionArr from "../regions";
 import Form from "../components/form";
 import ResultsGrid from "../components/results-grid";
